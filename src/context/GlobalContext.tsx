@@ -1,3 +1,4 @@
+import { IListing } from '@/types/listing'
 import React, { useState, createContext } from 'react'
 
 const GlobalContext = createContext<any>({})
@@ -8,6 +9,8 @@ const GlobalProvider = ({ children }: any) => {
   const [currentPage, setCurrentPage] = useState(null)
   const [investmentType, setInvestmentType] = useState('yoy')
   const [selectedLocation, setSelectedLocation] = useState(null)
+  const [listings, setListings] = useState<IListing[]>([])
+  const [listing, setListing] = useState<IListing | {}>({})
 
   const handleGlobalState = (data: any, type: any) => {
     globalState[type] = data
@@ -17,6 +20,10 @@ const GlobalProvider = ({ children }: any) => {
   return (
     <GlobalContext.Provider
       value={{
+        listing,
+        setListing,
+        listings,
+        setListings,
         setUser,
         user,
         globalState,
